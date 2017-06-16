@@ -1,7 +1,7 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Lib
   where
-import WriteXLSX (writeXlsx3)
+import JSONtoXLSX (writeXlsx3)
 import Foreign
 import Foreign.C
 
