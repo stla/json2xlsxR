@@ -18,6 +18,7 @@ library
   exposed-modules:     Lib
   build-depends:       base >= 4.7 && < 5
                      , json2xlsx
+                     , bytestring
   default-language:    Haskell2010
   if os(windows)
     ghc-options:       -O2 -shared -fPIC StartEnd.c -o json2xlsx.dll
