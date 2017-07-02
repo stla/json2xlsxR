@@ -1,7 +1,7 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Lib
   where
-import JSONtoXLSX (writeXlsx5)
+import JSONtoXLSX (writeXlsx6)
 import Foreign
 import Foreign.C
 -- import Data.ByteString (packCString)
@@ -37,10 +37,12 @@ import Foreign.C
 --   outfile <- peekCString _outfile
 --   writeXlsx4 json1 json2 outfile
 
-foreign export ccall json2xlsx :: Ptr CString -> Ptr CString -> Ptr CString -> IO ()
-json2xlsx :: Ptr CString -> Ptr CString -> Ptr CString -> IO ()
-json2xlsx json1 json2 outfile = do
-  json1 <- (>>=) (peek json1) peekCAString 
+foreign export ccall json2xlsx :: Ptr CString -> Ptr CString -> Ptr CString ->
+                                                            Ptr CString -> IO ()
+json2xlsx :: Ptr CString -> Ptr CString -> Ptr CString -> Ptr CString -> IO ()
+json2xlsx json1 json2 json3 outfile = do
+  json1 <- (>>=) (peek json1) peekCAString
   json2 <- (>>=) (peek json2) peekCAString
+  json3 <- (>>=) (peek json3) peekCAString
   outfile <- (>>=) (peek outfile) peekCAString
-  writeXlsx5 json1 json2 outfile
+  writeXlsx6 json1 json2 json3 outfile
